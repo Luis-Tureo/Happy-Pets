@@ -9,18 +9,50 @@
   </head>
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-center">
-        <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link" href="/view/index.html">Inicio</a></li>
-          <li class="nav-item"><a class="nav-link" href="/view/register_donator.html">Registro de Donadores</a></li>
-          <li class="nav-item"><a class="nav-link" href="/view/list_donator.html">Listado de Donadores</a></li>
-          <li class="nav-item"><a class="nav-link" href="/view/find_contact.html">Buscar Contactos</a></li>
-          <li class="nav-item"><a class="nav-link" href="/view/register_accidents.html">Registro de Accidentes</a></li>
-          <li class="nav-item"><a class="nav-link" href="/view/register_vet.html">Registro de Veterinarias</a></li>
-          <li class="nav-item"><a class="nav-link" href="/view/info.html">Información</a></li>
-          <li class="nav-item"><a class="nav-link" href="/view/contact.html">Contáctanos</a></li>
-        </ul>
-      </nav>
+      <nav class="navbar navbar-dark bg-primary fixed-top"> 
+        <div class="container-fluid">
+        <a class="navbar-brand" href="#">Bienvenido a Mascotas Felices</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-end text-bg-info" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Menú</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="../view/index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../view/contact.html">Contáctanos</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Registros y Búsquedas
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="../view/register_donator.html">Registro de Donadores</a></li>
+                  <li><a class="dropdown-item" href="../view/list_donator.html">Listado de Donadores</a></li>
+                  <li><a class="dropdown-item" href="../view/find_contact.html">Buscar Contactos</a></li>
+                  <li><a class="dropdown-item" href="../view/register_accidents.html">Registro de Accidentes</a></li>
+                  <li><a class="dropdown-item" href="../view/register_vet.html">Registro de Veterinarias</a></li>
+                  <li>
+                    <hr class="dropdown-divider">
+                  </li>
+                  <li><a class="dropdown-item" href="../view/info.html">Información</a></li>
+                </ul>
+              </li>
+            </ul>
+            <form class="d-flex mt-3" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      </nav> 
         <img class="img-fluid" alt="Responsive image" src="/image/image.png"/>
     </header>  
 
