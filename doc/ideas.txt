@@ -1,0 +1,3 @@
+1.- Mostrar listado de Veterinarias y sus horarios de atención.
+2.- Mostrar ruta para ir a la veterinaria.
+3.- Crear vista para registro de accidentes veterinarios

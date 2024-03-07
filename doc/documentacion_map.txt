@@ -1,0 +1,202 @@
+Initialize and add the map
+let map, infoWindow;
+
+const image ="./simbolo.png";
+
+async function initMap() {
+
+  const alerce = { lat: -41.390471, lng: -72.911711 };
+  const puerto_montt = { lat: -41.4700644, lng: -72.9436817};
+
+
+  const { Map } = await google.maps.importLibrary("maps");
+
+ 
+  let map = new Map(document.getElementById("map"), {
+    zoom: 15, //La propiedad zoom especifica el nivel de zoom del mapa. 0 es el valor de zoom más bajo y muestra todo el planeta. Define un valor de zoom más alto para acercarte en el globo con resoluciones más altas.
+    center: alerce, //La propiedad center le indica a la API dónde debe centrar el mapa.
+  });
+
+
+  let marker = new google.maps.Marker({
+    position: alerce,
+    // map, // (opcional) especifica el Map en el que se debe colocar el marcador. Si no especificas el mapa al construir el marcador, este se creará, pero no se adjuntará al mapa (ni se mostrará en él). Puedes agregar el marcador más adelante llamando al método setMap() del marcador.
+    title: "Hola, soy un marcador",
+    draggable: true, // Para permitir que los usuarios arrastren un marcador a una ubicación diferente en el mapa, establece draggable en true en las opciones del marcador.
+    animation: google.maps.Animation.DROP,
+    // icon: image,
+  });
+
+  marker.addListener("click", toggleBounce);
+
+  let service = new google.maps.DistanceMatrixService();
+  service.getDistanceMatrix(
+  {
+    origins: [alerce, "Cardenal Walter Kasper 1009, 5521102 Llanquihue, Puerto Montt, Los Lagos, Chile"],
+    destinations: ["Talca 301, Puerto Montt, Los Lagos, Chile", puerto_montt],
+    travelMode: 'DRIVING',
+    // transitOptions: TransitOptions,
+    drivingOptions: {
+      departureTime: new Date(Date.now()),  // for the time N milliseconds from now.
+      trafficModel: 'optimistic'
+    },
+    // unitSystem: UnitSystem,
+    // avoidHighways: Boolean,
+    // avoidTolls: Boolean,
+  }, callback);
+
+  /*
+  DistanceMatrixRequest contiene los siguientes campos:
+
+  origins (obligatorio): Es un array que contiene una o más strings de dirección, objetos google.maps.LatLng u objetos Place desde donde se calculan la distancia y el tiempo.
+  destinations (obligatorio): Es un array que contiene una o más strings de dirección, objetos google.maps.LatLng u objetos de Place hacia donde se calcula, la distancia y el tiempo.
+  travelMode (opcional): Es el medio de transporte que se usará para calcular las instrucciones sobre cómo llegar a un lugar. Consulta la sección sobre los medios de transporte.
+  transitOptions (opcional): Son opciones que se aplican solo a las solicitudes en las que travelMode es TRANSIT. Los valores válidos se describen en la sección Opciones de transporte público.
+  drivingOptions (opcional): Especifica valores que se aplican solo a solicitudes en las que travelMode es DRIVING. Los valores válidos se describen en la sección Opciones de manejo.
+  unitSystem (opcional): Indica el sistema de unidades que se usará para mostrar la distancia. Se aceptan los siguientes valores:
+  google.maps.UnitSystem.METRIC (predeterminado)
+  google.maps.UnitSystem.IMPERIAL
+  avoidHighways (opcional): Si es true, al calcular las rutas entre los orígenes y los destinos, se evitarán las autopistas cuando sea posible.
+  avoidTolls (opcional): Si es true, al calcular las instrucciones sobre cómo llegar de un punto a otro, se incluirán rutas sin peajes cuando sea posible.
+  */
+
+  /*
+  Medios de transporte
+  Al calcular los tiempos y las distancias, puedes especificar el medio de transporte que se usará. Actualmente, se admiten los siguientes medios de transporte:
+
+  BICYCLING solicita rutas en bicicleta por sendas para bicicletas y calles preferidas (actualmente, solo disponible en EE.UU. y algunas ciudades de Canadá).
+  DRIVING (predeterminado) indica la ruta en auto estándar por la red de rutas.
+  TRANSIT solicita instrucciones sobre cómo llegar a un lugar mediante rutas de transporte público. Esta opción solo puede especificarse si en la solicitud se incluye una clave de API. Consulta la sección Opciones de transporte público para ver las opciones disponibles en este tipo de solicitud.
+  WALKING solicita instrucciones sobre cómo llegar a un lugar a pie por rutas peatonales y veredas (cuando estén disponibles).
+  */
+  var directionsService   = new google.maps.DirectionsService();
+  var directionsRenderer  = new google.maps.DirectionsRenderer();
+
+  var start = alerce
+  var end = puerto_montt;
+  var request = {
+    origin: start,
+    destination: end,
+    travelMode: 'DRIVING'
+  };
+
+  directionsService.route(request, function(result, status) {
+    if (status == 'OK') {
+      directionsRenderer.setDirections(result);
+    }
+  });
+  directionsRenderer.setMap(map);
+  infoWindow = new google.maps.InfoWindow();
+  map.controls[google.maps.ControlPosition.RIGHT].push(locationButton);
+
+  locationButton.addEventListener("click", () => {
+    Try HTML5 geolocation.
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+
+        (position) => {
+          const pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          };
+
+          infoWindow.setPosition(pos);
+          infoWindow.setContent("Mi Ubicación.");
+          infoWindow.open(map);
+          map.setCenter(pos);
+        },
+
+        () => {
+          handleLocationError(true, infoWindow, map.getCenter());
+        }
+        
+      );
+    } else {
+      Browser doesn't support Geolocation
+      handleLocationError(false, infoWindow, map.getCenter());
+    }
+  });
+}
+
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+  infoWindow.setPosition(pos);
+  infoWindow.setContent(
+    browserHasGeolocation
+      ? "Error: The Geolocation service failed."
+      : "Error: Your browser doesn't support geolocation."
+  );
+  infoWindow.open(map);
+}
+
+function callback(response, status) {
+  if (status == 'OK') {
+    var origins       = response.originAddresses;
+    var destinations  = response.destinationAddresses;
+
+    for (var i = 0; i < origins.length; i++) {
+      var results = response.rows[i].elements;
+      for (var j = 0; j < results.length; j++) {
+        var element   = results[j];
+        var distance  = element.distance.text;
+        var duration  = element.duration.text;
+        var from      = origins[i];
+        var to        = destinations[j];
+      }
+    }
+    console.log(element);
+    console.log(distance);
+    console.log(duration);
+    console.log(from);
+    console.log(to);
+  }
+}
+
+
+function toggleBounce() {
+  if (marker.getAnimation() !== null) {
+    marker.setAnimation(null);
+  } else {
+    marker.setAnimation(google.maps.Animation.BOUNCE); //BUNCE: indica que el marcador debe rebotar en el lugar. Un marcador que rebota continuará rebotando hasta que su propiedad animation se configure explícitamente como null. || DROP indica que el marcador debe desplazarse desde la parte superior del mapa hasta su ubicación final cuando se lo coloque por primera vez allí. La animación finalizará una vez que el marcador esté en su posición, y el valor de animation se revertirá a null. En general, este tipo de animación se especifica durante la creación del Marker.
+  }
+}
+Otra Forma de hacer el marcador
+
+/*
+var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+var marker = new google.maps.Marker({
+    position: myLatlng,
+    title:"Hello World!"
+});
+
+To add the marker to the map, call setMap();
+marker.setMap(map);
+
+Para quitar un marcador del mapa, llama al método setMap() y pasa null como argumento.
+marker.setMap(null);
+
+
+function createMarker(place) {
+    if (!place.geometry || !place.geometry.location) return;
+  
+    const marker = new google.maps.Marker({
+      map,
+      position: place.geometry.location,
+    });
+  
+    google.maps.event.addListener(marker, "click", () => {
+      infowindow.setContent(place.name || "");
+      infowindow.open(map);
+    });
+}
+
+//Cuando se presiona la tecla Enter hacer algo en un input
+
+$("#input").keypress(function(e) {
+    var code = (e.keyCode ? e.keyCode : e.which);
+    if(code==13){
+        console.log("Hola");
+    }
+});
+
+initMap();

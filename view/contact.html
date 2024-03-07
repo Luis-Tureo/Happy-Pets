@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulario de Contacto</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-dark bg-primary fixed-top"> 
+      <div class="container-fluid">
+      <a class="navbar-brand" href="#">Bienvenido a Mascotas Felices</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end text-bg-info" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Menú</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="../view/index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../view/contact.html">Contáctanos</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Registros y Búsquedas
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="../view/register_donator.html">Registro de Donadores</a></li>
+                <li><a class="dropdown-item" href="../view/list_donator.html">Listado de Donadores</a></li>
+                <li><a class="dropdown-item" href="../view/find_contact.html">Buscar Contactos</a></li>
+                <li><a class="dropdown-item" href="../view/register_accidents.html">Registro de Accidentes</a></li>
+                <li><a class="dropdown-item" href="../view/register_vet.html">Registro de Veterinarias</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="../view/info.html">Información</a></li>
+              </ul>
+            </li>
+          </ul>
+          <form class="d-flex mt-3" role="search">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-success" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    </nav> 
+  
+    <div class="container grid" style="
+    margin-top: 100px;
+    margin-left: 50px;
+">
+      <div class="row justify-content-md-center">
+        <form class="form" id="contactForm">
+          <label id="errorEmail"></label>
+          <br>
+          <table>
+            <tr>
+              <td class="col-6">Nombre</td>
+              <td class="col-6"><input type="text" id="nameContact" placeholder="Ingrese su nombre completo" required></td>
+            </tr>
+            <tr>
+              <td class="col-6">Correo electrónico</td>
+              <td class="col-6"><input type="email" id="emailContact" placeholder="Ingrese su correo electrónico" required></td>
+            </tr>
+            <tr>
+              <td class="col-6">Mensaje</td>
+              <td class="col-6"><textarea id="message" rows=5 cols=50 placeholder="Ingrese su mensaje"></textarea></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><button type="button" id="contactButton" class="btn btn-primary">Enviar</button></td>
+            </tr>
+          </table>      
+        </form>
+      </div>
+    </div>
+
+    <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({key: "AIzaSyA_AXAcaBZTMYYuJTGYIxQYMS5GUzkz708", v: "weekly"});</script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="../js/location.js"></script>
+ 
+    <footer class="footer text-center mt-5">
+      <div class="footer text-light">
+        <a href="./view/info.html">Información</a>
+        <a href="./view/contact.html">Contáctanos</a>
+      </div>
+    </footer> 
+
+  </body>
+</html>

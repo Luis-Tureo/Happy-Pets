@@ -1,0 +1,88 @@
+[
+    {
+      "nameContact": "Juan Pérez",
+      "emailContact": "juan.perez@example.com",
+      "message": "Hola, me gustaría saber más sobre sus productos."
+    },
+    {
+      "nameContact": "María García",
+      "emailContact": "maria.garcia@example.com",
+      "message": "Estoy interesado en contratar sus servicios."
+    },
+    {
+      "nameContact": "Pedro Sánchez",
+      "emailContact": "pedro.sanchez@example.com",
+      "message": "Me gustaría que me enviaran un presupuesto."
+    },
+    {
+      "nameContact": "Ana González",
+      "emailContact": "ana.gonzalez@example.com",
+      "message": "Tengo una consulta sobre sus términos y condiciones."
+    },
+    {
+      "nameContact": "José Fernández",
+      "emailContact": "jose.fernandez@example.com",
+      "message": "Quiero cancelar mi suscripción."
+    },
+    {
+      "nameContact": "Luisa López",
+      "emailContact": "luisa.lopez@example.com",
+      "message": "Estoy interesado en conocer sus ofertas."
+    },
+    {
+      "nameContact": "Carlos Martínez",
+      "emailContact": "carlos.martinez@example.com",
+      "message": "Necesito ayuda con mi cuenta."
+    },
+    {
+      "nameContact": "Carmen Rodríguez",
+      "emailContact": "carmen.rodriguez@example.com",
+      "message": "Tengo una queja sobre un producto."
+    },
+    {
+      "nameContact": "David Gómez",
+      "emailContact": "david.gomez@example.com",
+      "message": "Estoy interesado en conocer sus planes de suscripción."
+    },
+    {
+      "nameContact": "Laura Sánchez",
+      "emailContact": "laura.sanchez@example.com",
+      "message": "Quiero saber más sobre sus servicios."
+    },
+    {
+      "nameContact": "Pedro Pérez",
+      "emailContact": "pedro.perez@example.com",
+      "message": "Tengo una pregunta sobre sus precios."
+    },
+    {
+      "nameContact": "María López",
+      "emailContact": "maria.lopez@example.com",
+      "message": "Quiero recomendar su empresa a un amigo."
+    },
+    {
+      "nameContact": "Juan García",
+      "emailContact": "juan.garcia@example.com",
+      "message": "Estoy interesado en trabajar con ustedes."
+    },
+    {
+      "nameContact": "Carlos González",
+      "emailContact": "carlos.gonzalez@example.com",
+      "message": "Quiero saber más sobre su empresa."
+    },
+    {
+      "nameContact": "Ana Fernández",
+      "emailContact": "ana.fernandez@example.com",
+      "message": "Necesito ayuda con mi pedido."
+    },
+    {
+      "nameContact": "Luis Martínez",
+      "emailContact": "luis.martinez@example.com",
+      "message": "Quiero hacer una devolución."
+    },
+    {
+      "nameContact": "Carmen Gómez",
+      "emailContact": "carmen.gomez@example.com",
+      "message": "Tengo una sugerencia para su empresa."
+    }
+  ]
+  
