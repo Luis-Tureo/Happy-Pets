@@ -1,0 +1,7 @@
+.unstyle {
+    all: unset;
+  }
+
+  #carouselExampleIndicators .carousel-inner {
+    height: 400px; /* Ajusta esta altura según tus necesidades */
+  }
